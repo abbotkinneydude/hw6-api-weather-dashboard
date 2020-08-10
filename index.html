@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>New France API Weather Dashboard (Open Weather Map API, Javascript, Jquery (AJAX), Moment JS, Skeleton CSS)</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./assets/img/sun-favicon-1578x1578.png">
+  <!-- Normalize CSS - Same function as a CSS Reset-->
+  <link rel="stylesheet" href="./assets/css/normalize.css" />
+  <!-- Skeleton CSS -->
+  <link rel="stylesheet" href="./assets/css/skeleton.css" />
+  <!-- Custom Scheduler CSS -->
+  <link rel="stylesheet" href="./assets/css/weather.css" />
+  <!-- Raleway Google Font Import -->
+  <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+</head>
+    <body>
+      <div class="container"> <!-- Start Main Container -->
+        
+        <!-- Start Top Box with Headers-->
+        <div class="row topBox">
+          <div class="four columns newFranceCentered">
+            <img src="./assets/img/new-france-flag-564x547.jpg" class="newFranceCoatOfArms" alt="New France Coat of Arms Flag" />
+          </div>
+          <div class="eight columns headers">
+            <h2>New France Weather Dashboard</h2>
+            <h6>Open Weather Map API, Javascript, Jquery (AJAX), Moment JS, Skeleton CSS.</h6>
+            <h5 id="realTime"></h5>
+          </div>
+        </div>
+        <!-- End Top Box with Headers -->
+
+        <!-- Start Left Column with Search Input Field, search icon/button, previous query buttons -->
+        <div class="row"> <!-- All Encompassing MASTER Row -->
+          <div class="three columns">
+            <div id="searchHistory">
+              <form> <!-- Skeleton CSS Form Declaration -->
+                <label for="citySearch"><h5>City Search</h5></label>
+                <input type="text" class="searchBox" placeholder="City Search">
+                <button type="submit" id="citySearchButton">
+                  <i class="fas fa-search"> <!-- Search Button Icon from Font Awesome --> </i>
+                </button>
+              </form>
+            </div> <!-- End Search History -->
+
+            <div id="previousSearches">
+              <!-- Previous Queries are listed as buttons here: searchHistoryList1/searchHistoryList2 -->
+            </div>
+
+          </div>  <!-- End Three Columns -->
+          
+          <!-- Div below contains Nested Rows: R1 -> Current Weather, R2 -> 5 Day Forecast Header, R3 -> 5 Day Forecast Weather -->
+          <!-- This will show to the right side of the three columns / search section -->
+
+          <div class="nine columns"> <!-- Nine Columns Parent Container -->
+            
+            <div class="row"> <!-- Current Weather Row -->
+              <div class="twelve columns current-weather">
+                <h3 id="currentCity"></h3>
+                <h5 id="cityDate"></h5>
+                <div id="weatherIcon"></div>
+                <h5 id="temperature"></h5>
+                <h5 id="humidity"></h5>
+                <h5 id="windSpeed"></h5>
+                <h5 id="uvLevel" class="uvDecoration"></h5>
+              </div>
+            </div>   <!-- End Current Weather Row -->
+            
+            <!-- 5 Day Forecast Section -->
+            <section id="fiveDayBlock">
+
+              <!-- 5 Day Forecast Header -->
+              <div class="row">
+                <div class="twelve columns fiveDayHeader">
+                  <h3>5-Day Forecast</h3>
+                </div>
+              </div>
+              <!-- End 5 Day Forecast Header -->
+              
+              <!-- 5 Day Forecast Boxes = (1 empty box for buffer + 5 filled boxes) x2 columns each = 12 columns total -->
+              <div class="row">
+                <div class="two columns">
+                  <!-- Empty 2 Column Div for Left Side Buffer on Desktop -->
+                </div>
+                
+                <!-- Days #1 -> #5 : 2 columns each for 10 columns total -->
+
+                <div class="two columns fiveDayForecast">
+                  <h6 id="day1Forecast"></h6> <!-- Day #1 -->
+                  <div class="row"><days id="day1Icon"></days></div>
+                  <text class="row" id="day1Temperature"></text>
+                  <text class="row" id="day1Humidity"></text>
+                </div>
+                
+                <div class="two columns fiveDayForecast">
+                  <h6 id="day2Forecast"></h6> <!-- Day #2 -->
+                  <div class="row"><days id="day2Icon"></days></div>
+                  <text class="row" id="day2Temperature"></text>
+                  <text class="row" id="day2Humidity"></text>
+                </div>
+
+                <div class="two columns fiveDayForecast">
+                  <h6 id="day3Forecast"></h6> <!-- Day #3 -->
+                  <div class="row"><days id="day3Icon"></days></div>
+                  <text class="row" id="day3Temperature"></text>
+                  <text class="row" id="day3Humidity"></text> 
+                </div>
+                
+                <div class="two columns fiveDayForecast">
+                  <h6 id="day4Forecast"></h6> <!-- Day #4 -->
+                  <div class="row"><days id="day4Icon"></days></div>
+                  <text class="row" id="day4Temperature"></text>
+                  <text class="row" id="day4Humidity"></text> 
+                </div>        
+                
+                <div class="two columns fiveDayForecast">
+                  <h6 id="day5Forecast"></h6> <!-- Day #5 -->
+                  <div class="row"><days id="day5Icon"></days></div>
+                  <text class="row" id="day5Temperature"></text>
+                  <text class="row" id="day5Humidity"></text> 
+                </div>       
+
+              </div> <!-- 5 Day Forecast Boxes (Days #1-#5) Section -->
+            
+            </section>
+            <!-- End 5 Day Forecast Section -->
+          
+          </div>  <!-- End Nine Columns Parent Container -->
+        
+        </div>  <!-- End All Encompassing MASTER Row -->
+
+      </div> <!-- End Main Container -->
+
+      <!-- Jquery CDN -->
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+      <!-- Moment CDN -->
+      <script src="./assets/js/moment-with-locales.min.js"></script>
+      <!-- Weather JS -->
+      <script src="./assets/js/weather.js"></script>
+    </body>
+  </html>

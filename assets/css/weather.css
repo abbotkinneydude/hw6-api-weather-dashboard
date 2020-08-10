@@ -1,0 +1,106 @@
+body {
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* Header Section */
+
+.topBox {
+  margin: 10px 0px 30px 0px;
+  padding: 20px;
+  border: 2px solid #ffd650;
+  border-radius: 10px;
+}
+
+.newFranceCentered {
+  text-align: center;
+}
+.newFranceCoatOfArms {
+  width: 100%;
+  max-width: 187px;
+}
+
+.headers {
+  margin: 0px;
+  padding: 20px;
+  text-align: center;
+  background-color: #5079ff;
+  color: #ffffff;
+}
+
+/* Search Section */
+
+.searchBox {
+  width: 100%;
+}
+
+button, [type="submit"] {
+  float: right;
+  width: auto;
+  background-color: #ffffff;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+/* Previous Searches Section */
+
+button {
+  width: 100%;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+  color: #000000; 
+  background-color: #ffd650;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 10px;
+  font-weight: 300;
+}
+
+div.current-weather {
+    text-align: center;
+    padding: 20px;
+    color: #ffffff; 
+    background-color: #5079ff;
+    border-radius: 5px;
+}
+
+.uvDecoration {
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+  border-radius: 12px;
+  padding: 1.5%;
+  max-width: 20%;
+  margin-top: 15px;
+}
+
+/* Five Day Forecast Section */
+
+#fiveDayBlock {
+  text-align: center;
+  color: #ffffff; 
+  background-color: #5079ff;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.fiveDayHeader {
+  margin-top: 20px;
+}
+
+.fiveDayForecast {
+  font-size: 0.8em;
+  line-height: 2em;
+  padding: 12px 6px 6px 12px;
+  color: #ffffff;
+  background-color: #5079ff;
+  border-radius: 5px;
+  margin: 20px 25px 20px 25px;
+  border: 2px solid white;
+}
