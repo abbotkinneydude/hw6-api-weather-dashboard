@@ -1,96 +1,80 @@
 // JS Script for New France Weather Dashboard
 
-// The document ready function ensures that no JS executes until the full html / css page is loaded.
-$(document).ready(function(){
+$(document).ready(function(){ // ensures that no JS executes until full html/css is loaded
     
-    // Consult moment js to import the exact date at which the page is consulted.
-    // The moment js api is being loaded via a <script> at the bottom of index.html
-    // I am specifying French language with the use of 'fr' within the moment parenthesis.
-    // I use a var to extract the exact date, hour from the moment API.
-    moment.locale('fr');
-    var exactDate = moment().format("LLLL");
-    console.log(exactDate); // For Testing Purpose
-    // I'm using plain vanilla JS to access the <h5> in index.html
-    // I then inject a string extracted from the var above.
+    var search = document.getElementById("citySearchButton");  // variable associated with the search button   
+    search.addEventListener("click", function() { getSearchInput (event) }); // sends to string retrieval function
+    search.addEventListener("click", function() { getWeather (storedCities); }); // runs the  get weather for previously searched queries
+    var cityAccumulator = []; // Array to store the accumulated cities during search
+    var storedCities = $(this)[0].innerHTML; // HTML injection for cities accumulated during search
+
+
+    // Header Section
+    var exactDate = moment().format("LLLL"); // Date Format for Moment JS in Main Header
+    moment.locale('fr'); // Consult Moment API (French language) to extract current date & time
+    console.log("(this computer) Current Time Zone Date & Hour (French): " + exactDate); // For Testing Purpose
+    document.getElementById("realTime").textContent = exactDate; // Current date & time are injected in the main header via #ID
     
-    document.getElementById("realTime").textContent = exactDate;
-    
-    // Variable / array declaration to accumulate, retrieve city search history
-    var cityAccumulator = [];
-    
-    // The variable 'search' is linked to the 'City Search Button'.
-    // Two events listeners are added:
-    // 1) To transmit the data to the 'getSearchInput' function via the event click.
-    // 2) To retrieve 'City Search History' (if any) by forwarding to the 'storedCities' function
-        
-    var search = document.getElementById("citySearchButton");
-    search.addEventListener("click", function() { getSearchInput(event) });
-    search.addEventListener("click", function() { storedCities() });
-        
-    searchHistory();    // Call searchHistory function @ page load
-    
-    function storedCities() {
-    var city = this[0].innerHTML;
-    getWeather (city);
-    };
-                    
+    searchHistory();    // Runs the Search History function to generate buttons (left column) of previous searches stored in local storage 
+
     function getSearchInput() {
         event.preventDefault();
-        var city = document.querySelector(".searchBox").value;   // Create array of searched cities
-        cityAccumulator.push(city); // Pushes new city into the array
-        // Create string from searched cities in the searched cities array
-        localStorage.setItem("cities", JSON.stringify(cityAccumulator));
-        // Display Search History List 1 (prepend the latest search to the top of the list)
-        var searchHistoryList1 = document.createElement("button");
-        searchHistoryList1.innerHTML = city;
-        document.getElementById("previousSearches").prepend(searchHistoryList1);
-        getWeather(city);
-    };
-        
-        // Search history is loop based to retrieve the previous cities from the 'cityAccumulator' array.
-        // Create function to display cities search History stored in localStorage
-        
-    function searchHistory() {
-        //Conversion string en objet avec JSON.parse
-        cityAccumulator = JSON.parse(localStorage.getItem("cities"));
-        // Use if else statements and for loop to initialise searchHistory based on search history
-        if (cityAccumulator == null) { cityAccumulator = []; }
-        // Boucle pour le tableau (array) des villes recherchées
-        for (var i = 0; i < cityAccumulator.length; i++) {
-            var displaySearchedCities = cityAccumulator[i];
-            // Display List for prepending Search History List 2 (prepends below Search History List 1 for any previous history)
-            var searchHistoryList2 = document.createElement("button");
-            searchHistoryList2.textContent = displaySearchedCities;
-            document.getElementById("previousSearches").prepend(searchHistoryList2);
+        var city = document.querySelector(".searchBox").value;   // Extracts name value from Search Box     
+        if ( !city ) {
+            alert("Cannot accept an empty input field"); // Alerts user if empty input field
+        }   
+        else {
+            cityAccumulator.push(city); // Adds city name to the 'city accumulator' array
+            localStorage.setItem("cities", JSON.stringify(cityAccumulator)); // Stores the current search in local storage
+            var searchHistoryList1 = document.createElement("button"); // Creates a button (left column) to store current search query
+            searchHistoryList1.textContent = city; // assigns current city name query to button
+            document.getElementById("previousSearches").prepend(searchHistoryList1); // Prepends Search History age
+            document.querySelector(".searchBox").value = ""; // Clears the input field after search query is submitted
+            getWeather(city); // Sends city name to get weather function to generate weather chart
         }
     };
-    
-    // Open Weather Map API AJAX CALL
-    
-    var apiKey = "e19a7227909c517ca48b30c9f8ec1bec";
-    // Extract Current Weather from API
-    
+        
+    function searchHistory() {
+        cityAccumulator = JSON.parse(localStorage.getItem("cities"));  // Retrieves City names from local storage
+        // Checks if the city array has reached 20: if below 20, adds search history, 20 or above, sends to else: clears array to make space for new searches
+        if ( cityAccumulator == null || cityAccumulator >= 5 ) { cityAccumulator = []; }
+            // City Accumulator Ascending iterator
+            for (var i = 0; i < cityAccumulator.length; i++) {
+            // Display List for prepending Search History List 2 (prepends below Search History List 1 for any previous history)
+            var searchHistoryList2 = document.createElement("button");
+            searchHistoryList2.textContent = cityAccumulator[i];
+            document.getElementById("previousSearches").prepend(searchHistoryList2); }
+            };
+
+
+    var apiKey = "e19a7227909c517ca48b30c9f8ec1bec"; // Global API Key for Open Weather Map API
+  
+    // Main Retrieval Function
     function getWeather (city) {
     
         // Open Weather Map Query URL + specific API key
-        var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
+        var queryURL = "https://api.openweathermap.org/data/2.5/forecast?onecall?&q=" + city + "&appid=" + apiKey;
         
         // AJAX GET to retrieve JSON object with city weather information
+        
+     //   $(document).ajaxSuccess(function() {
+
             $.ajax({
+                type: "GET",
                 url: queryURL,
-                method: "GET",
-                dataType: "json",
-                
-                // Stocke toutes les données extraites dans un objet
-                success: function(response){
-                    
-                    // Enregistre dans la console l'URL de recherche et l'objet qui en ressort
+                dataType: "json"
+            })
+
+                .done(function(response) {
+
+                    // Copy of the queryURL pushed to the console
                     console.log(queryURL);
                     
-                    // Extraction des dates
-                    function date_format(dt_string){
-                        var date = new Date(dt_string.dt*1000);
-                        return date.toDateString();
+                    // Date Extraction
+                    function weatherDate(getDestinationTime){
+                        var date = new Date(getDestinationTime.dt*1000);
+                        var timeOfTheDay = new Date(getDestinationTime.list);
+                        return date+timeOfTheDay.toDateString();
                     }
                     
                     // Temperature : Celsius + Fahrenheit Calculations
@@ -100,15 +84,14 @@ $(document).ready(function(){
                         return temp;
                     }
                     
-                    // Current Weather Display List
-                    document.getElementById("previousSearches").empty;
+                    // Variable to contain JSON object received from Open Weather Map API
                     var apiContent = response.list[0];
                     
                     // Current City + Date
                     document.getElementById("currentCity").textContent = response.city.name;
-                    document.getElementById("cityDate").textContent = "Weather for " + date_format(apiContent);
-                    console.log(response.city.name);
-                    console.log(date_format(apiContent));
+                    document.getElementById("cityDate").textContent = "Weather for " + weatherDate(apiContent);
+                    console.log("Current City: " + response.city.name);
+                    console.log("Weather dated: " + weatherDate(apiContent));
                     
                     // Large Weather Icon
                     var weatherIcon = document.createElement("img");
@@ -121,20 +104,25 @@ $(document).ready(function(){
                     var temperature = document.getElementById("temperature");
                     var tempLevel = temp_trans(apiContent);
                     temperature.textContent = "Temperature: " + tempLevel;
+                    console.log("Temperature: " + temp_trans(apiContent));
 
                     // Current Humidity
                     var humidity = document.getElementById("humidity");
                     var humidityLevel = apiContent.main.humidity;
                     humidity.textContent = "Humidity: " + humidityLevel + "%";
+                    console.log("Humidity: " + apiContent.main.humidity);
 
                     // Current Wind Speed
                     var windSpeed = document.getElementById("windSpeed");
                     var speedLevel = apiContent.wind.speed;
                     windSpeed.textContent = "Wind Speed: " + speedLevel + " mph";
+                    console.log("Wind Speed: " + apiContent.wind.speed);                    
     
                     // For the UV, I am executing the ultraviolet function to display the UV moniker.
                     ultraviolet(response.city.coord.lat, response.city.coord.lon);
+                    console.log("Current City Latitude: " + response.city.coord.lat + " Longitude: " + response.city.coord.lon);
 
+                    // UV Level Retrieval Function
                     function ultraviolet(lat,long) {
                         var queryURL = "https://api.openweathermap.org/data/2.5/onecall?" + "&lat=" + lat + "&lon=" + long + "&appid=" + apiKey;
                         $.ajax({
@@ -159,7 +147,7 @@ $(document).ready(function(){
                         apiContent= response.list[(days*8)-1];
                         
                         // Displays the dates of the next 5 days
-                        document.getElementById("day" + days + "Forecast").textContent = date_format(apiContent);
+                        document.getElementById("day" + days + "Forecast").textContent = weatherDate(apiContent);
 
                         // Displays the weather icon (small) of the next 5 days                                
                         var dayIcon = document.createElement("img");
@@ -172,12 +160,23 @@ $(document).ready(function(){
                         document.getElementById("day" + days + "Temperature").textContent = "Temperature: " + temp_trans(apiContent);
                         document.getElementById("day" + days + "Humidity").textContent = "Humidity: " + apiContent.main.humidity + "%";
                     }
-                }
-            }
-            )
-        };
-        getWeather("Los Angeles"); // Displays Geolocalized Weather tailored to the user when page is first loaded
-    }
-    );
 
-// End Weather JS File //
+                } // End success: function(response)
+                
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                  if (jqXHR.status == 400 || jqXHR.status == 401 || jqXHR.status == 402 || jqXHR.status == 403 || jqXHR.status == 404 || jqXHR.status == 405 || jqXHR.status == 406)
+                  {
+                    alert("Error #" + jqXHR.status + ". This is not a valid entry." + " textStatus: " + textStatus + " errorThrown: " + errorThrown);
+                }
+            })
+
+
+        )
+   // }
+    ); // End AJAX Call
+
+    };  // End Get Weather Function
+
+        getWeather("Los Angeles") // Displays Los Angeles Weather tailored to the user when page is first loaded
+
+});
