@@ -47,7 +47,7 @@ $(document).ready(function(){ // ensures that no JS executes until full html/css
             };
 
 
-    var apiKey = "e19a7227909c517ca48b30c9f8ec1bec"; // Global API Key for Open Weather Map API
+    var apiKey = ""; // Global API Key for Open Weather Map API
   
     // Main Retrieval Function
     function getWeather (city) {
