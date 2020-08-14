@@ -163,20 +163,18 @@ $(document).ready(function(){ // ensures that no JS executes until full html/css
 
                 } // End success: function(response)
                 
-                .fail(function (jqXHR, textStatus, errorThrown) {
-                  if (jqXHR.status == 400 || jqXHR.status == 401 || jqXHR.status == 402 || jqXHR.status == 403 || jqXHR.status == 404 || jqXHR.status == 405 || jqXHR.status == 406)
-                  {
-                    alert("Error #" + jqXHR.status + ". This is not a valid entry." + " textStatus: " + textStatus + " errorThrown: " + errorThrown);
-                }
-            })
+            //     .fail(function (jqXHR, textStatus, errorThrown) {
+            //       if (jqXHR.status == 400 || jqXHR.status == 401 || jqXHR.status == 402 || jqXHR.status == 403 || jqXHR.status == 404 || jqXHR.status == 405 || jqXHR.status == 406)
+            //       {
+            //         alert("Error #" + jqXHR.status + ". This is not a valid entry." + " textStatus: " + textStatus + " errorThrown: " + errorThrown);
+            //     }
+            // })
 
 
         )
-   // }
-    ); // End AJAX Call
+    }
+     // End AJAX Call
 
-    };  // End Get Weather Function
+     getWeather("Los Angeles") // Displays Los Angeles Weather tailored to the user when page is first loaded
 
-        getWeather("Los Angeles") // Displays Los Angeles Weather tailored to the user when page is first loaded
-
-});
+    });
