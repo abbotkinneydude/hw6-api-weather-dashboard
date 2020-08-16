@@ -2,6 +2,7 @@
 *** New France Weather Dashboard optimized for mobile devices (Skeleton CSS).***
 
 Github Repository Page: https://github.com/abbotkinneydude/hw6-new-france-api-weather-dashboard
+
 Github Deployment Page: https://abbotkinneydude.github.io/hw6-new-france-api-weather-dashboard/
 
 **Reminder: please insert the API key sent to you via Slack before reviewing. Otherwise the application will not function.**
@@ -18,21 +19,24 @@ Github Deployment Page: https://abbotkinneydude.github.io/hw6-new-france-api-wea
 
 <u>Details:</u>
 
-<i>Weather Conditions for main window are:</i>
-	- City Name
-	- Date
-	- Icon Representation of Weather Conditions
-	- Temperature (Celsius / Fahrenheit)
-	- Humidity
-	- Wind speed
-	- UV index -> a differenc color is associated to each level of the UV index (from moderate to severe).
-	
-<i>Weather Conditions for 5 days forecast are:</i>
-	- Date
-	- Icon Representation of Weather Conditions
-	- Temperature (Celsius / Fahrenheit)
-	- Humidity
+<i>Weather Conditions for main window are:</i><br />
+<ul>
+<li>City Name</li>
+<li>Date</li>
+<li>Icon Representation of Weather Conditions</li>
+<li>Temperature (Celsius / Fahrenheit)</li>
+<li>Humidity</li>
+<li>Wind speed</li>
+<li>UV index -> a differenc color is associated to each level of the UV index (from moderate to severe).</li>
+</ul>
 
+<i>Weather Conditions for 5 days forecast are:</i><br />
+<ul>
+<li>Date</li>
+<li>Icon Representation of Weather Conditions</li>
+<li>Temperature (Celsius / Fahrenheit)</li>
+<li>Humidity</li>
+</ul>
 
 
 <u>Instructions:</u>
