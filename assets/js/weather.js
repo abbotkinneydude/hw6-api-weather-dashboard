@@ -14,7 +14,7 @@ $(document).ready(function(){ // ensures that no JS executes until full html/css
     console.log("(this computer) Current Time Zone Date & Hour (French): " + exactDate); // For Testing Purpose
     document.getElementById("realTime").textContent = exactDate; // Current date & time are injected in the main header via #ID
     
-    // Uncomment Line 18, 38-58 if you want search history to show after page refresh (violet buttons)
+    // Uncomment Line 18, 39-51 if you want search history to show after page refresh (violet buttons)
     // searchHistory();    // Runs the Search History function to generate buttons (left column) of previous searches stored in local storage 
 
     function getSearchInput() {
@@ -35,7 +35,7 @@ $(document).ready(function(){ // ensures that no JS executes until full html/css
             }
     };
 
-    // Uncomment Line 18, 38-58 if you want search history to show after page refresh (violet buttons)
+    // Uncomment Line 18, 39-51 if you want search history to show after page refresh (violet buttons)
     // function searchHistory() {
     //     cityAccumulator = JSON.parse(localStorage.getItem("cities"));  // Retrieves City names from local storage
     //         if ( cityAccumulator == null ) { cityAccumulator = [] }; // Checks if Accumulator is empty, if so starts accumulator from scratch when app is first used; otherwise move on.
@@ -46,14 +46,7 @@ $(document).ready(function(){ // ensures that no JS executes until full html/css
     //         searchHistoryList2.style.backgroundColor = "#7f50ff";
     //         searchHistoryList2.style.color = "#ffffff";
     //         searchHistoryList2.textContent = cityAccumulator[i];
-    //         searchHistoryList2.addEventListener("click", function() { getWeather(cityAccumulator[i]) });
-    //         if ( cityAccumulator >= 10) {
-    //             cityAccumulator = [];
-    //             document.getElementById("previousSearches").innerHTML="";
-    //         }
-    //         else {
     //         document.getElementById("previousSearches").prepend(searchHistoryList2);
-    //         }
     //     }
     // };
 
