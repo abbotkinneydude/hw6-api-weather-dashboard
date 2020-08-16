@@ -8,44 +8,54 @@ $(document).ready(function(){ // ensures that no JS executes until full html/css
     var cityAccumulator = []; // Array to store the accumulated cities during search
     var storedCities = $(this)[0].innerHTML; // HTML injection for cities accumulated during search
 
-
     // Header Section
     var exactDate = moment().format("LLLL"); // Date Format for Moment JS in Main Header
     moment.locale('fr'); // Consult Moment API (French language) to extract current date & time
     console.log("(this computer) Current Time Zone Date & Hour (French): " + exactDate); // For Testing Purpose
     document.getElementById("realTime").textContent = exactDate; // Current date & time are injected in the main header via #ID
     
-    searchHistory();    // Runs the Search History function to generate buttons (left column) of previous searches stored in local storage 
+    // Uncomment Line 18, 38-58 if you want search history to show after page refresh (violet buttons)
+    // searchHistory();    // Runs the Search History function to generate buttons (left column) of previous searches stored in local storage 
 
     function getSearchInput() {
         event.preventDefault();
         var city = document.querySelector(".searchBox").value;   // Extracts name value from Search Box     
         if ( !city ) {
             alert("Cannot accept an empty input field"); // Alerts user if empty input field
-        }   
+        }      
         else {
             cityAccumulator.push(city); // Adds city name to the 'city accumulator' array
             localStorage.setItem("cities", JSON.stringify(cityAccumulator)); // Stores the current search in local storage
             var searchHistoryList1 = document.createElement("button"); // Creates a button (left column) to store current search query
+            searchHistoryList1.addEventListener("click", function() { getWeather(city) });
             searchHistoryList1.textContent = city; // assigns current city name query to button
-            document.getElementById("previousSearches").prepend(searchHistoryList1); // Prepends Search History age
             document.querySelector(".searchBox").value = ""; // Clears the input field after search query is submitted
+            document.getElementById("previousSearches").prepend(searchHistoryList1); // Prepends Search History
             getWeather(city); // Sends city name to get weather function to generate weather chart
-        }
+            }
     };
-        
-    function searchHistory() {
-        cityAccumulator = JSON.parse(localStorage.getItem("cities"));  // Retrieves City names from local storage
-        // Checks if the city array has reached 20: if below 20, adds search history, 20 or above, sends to else: clears array to make space for new searches
-        if ( cityAccumulator == null || cityAccumulator >= 5 ) { cityAccumulator = []; }
-            // City Accumulator Ascending iterator
-            for (var i = 0; i < cityAccumulator.length; i++) {
-            // Display List for prepending Search History List 2 (prepends below Search History List 1 for any previous history)
-            var searchHistoryList2 = document.createElement("button");
-            searchHistoryList2.textContent = cityAccumulator[i];
-            document.getElementById("previousSearches").prepend(searchHistoryList2); }
-            };
 
+    // Uncomment Line 18, 38-58 if you want search history to show after page refresh (violet buttons)
+    // function searchHistory() {
+    //     cityAccumulator = JSON.parse(localStorage.getItem("cities"));  // Retrieves City names from local storage
+    //         if ( cityAccumulator == null ) { cityAccumulator = [] }; // Checks if Accumulator is empty, if so starts accumulator from scratch when app is first used; otherwise move on.
+    //         // City Accumulator Ascending iterator
+    //         for (var i = 0; i < cityAccumulator.length; i++) {
+    //         // Display List for prepending Search History List 2 (prepends below Search History List 1 for any previous history)
+    //         var searchHistoryList2 = document.createElement("button");
+    //         searchHistoryList2.style.backgroundColor = "#7f50ff";
+    //         searchHistoryList2.style.color = "#ffffff";
+    //         searchHistoryList2.textContent = cityAccumulator[i];
+    //         searchHistoryList2.addEventListener("click", function() { getWeather(cityAccumulator[i]) });
+    //         if ( cityAccumulator >= 10) {
+    //             cityAccumulator = [];
+    //             document.getElementById("previousSearches").innerHTML="";
+    //         }
+    //         else {
+    //         document.getElementById("previousSearches").prepend(searchHistoryList2);
+    //         }
+    //     }
+    // };
 
     var apiKey = ""; // Global API Key for Open Weather Map API
   
@@ -53,12 +63,10 @@ $(document).ready(function(){ // ensures that no JS executes until full html/css
     function getWeather (city) {
     
         // Open Weather Map Query URL + specific API key
-        var queryURL = "https://api.openweathermap.org/data/2.5/forecast?onecall?&q=" + city + "&appid=" + apiKey;
+        var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey + "&lang=fr";
         
         // AJAX GET to retrieve JSON object with city weather information
         
-     //   $(document).ajaxSuccess(function() {
-
             $.ajax({
                 type: "GET",
                 url: queryURL,
@@ -67,14 +75,14 @@ $(document).ready(function(){ // ensures that no JS executes until full html/css
 
                 .done(function(response) {
 
-                    // Copy of the queryURL pushed to the console
-                    console.log(queryURL);
+                    console.log("Response To API: " , response); // For Testing Purpose
+                    console.log("Queryl URL: " , queryURL); // For Testing Purpose
                     
                     // Date Extraction
                     function weatherDate(getDestinationTime){
+                        // This is for the current city search
                         var date = new Date(getDestinationTime.dt*1000);
-                        var timeOfTheDay = new Date(getDestinationTime.list);
-                        return date+timeOfTheDay.toDateString();
+                        return date.toDateString();;
                     }
                     
                     // Temperature : Celsius + Fahrenheit Calculations
@@ -144,7 +152,7 @@ $(document).ready(function(){ // ensures that no JS executes until full html/css
                     
                     // 5 Day Forecast Display List
                     for(days=1; days<=5; days++){
-                        apiContent= response.list[(days*8)-1];
+                        apiContent = response.list[(days*8)-1];
                         
                         // Displays the dates of the next 5 days
                         document.getElementById("day" + days + "Forecast").textContent = weatherDate(apiContent);
@@ -160,21 +168,16 @@ $(document).ready(function(){ // ensures that no JS executes until full html/css
                         document.getElementById("day" + days + "Temperature").textContent = "Temperature: " + temp_trans(apiContent);
                         document.getElementById("day" + days + "Humidity").textContent = "Humidity: " + apiContent.main.humidity + "%";
                     }
-
-                } // End success: function(response)
-                
-            //     .fail(function (jqXHR, textStatus, errorThrown) {
-            //       if (jqXHR.status == 400 || jqXHR.status == 401 || jqXHR.status == 402 || jqXHR.status == 403 || jqXHR.status == 404 || jqXHR.status == 405 || jqXHR.status == 406)
-            //       {
-            //         alert("Error #" + jqXHR.status + ". This is not a valid entry." + " textStatus: " + textStatus + " errorThrown: " + errorThrown);
-            //     }
-            // })
-
-
+                } // End done.function(response)
         )
     }
      // End AJAX Call
+     var searchTerm = "Los Angeles"; // The page loads with the Lost Angeles weather by default
 
-     getWeather("Los Angeles") // Displays Los Angeles Weather tailored to the user when page is first loaded
-
+     var lastCitySearched = JSON.parse(localStorage.getItem("cities"));  // Retrieves last search query from local storage
+     console.log("City Accumulator: " , lastCitySearched); // For Testing Purpose
+       if (lastCitySearched) {
+        searchTerm = lastCitySearched[lastCitySearched.length-1];
+       }
+     getWeather(searchTerm) // Runs the getWeather function with the last search query at page refresh
     });
