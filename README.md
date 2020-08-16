@@ -1,60 +1,57 @@
-# hw6-api-new-france-weather-dashboard
-*** New France Weather Dashboard optimized for mobile devices (Skeleton CSS).***
+<strong>#hw6-api-new-france-weather-dashboard</strong>
 
-Github Repository Page: https://github.com/abbotkinneydude/hw6-new-france-api-weather-dashboard
+<p><strong>New France Weather Dashboard optimized for mobile devices (Skeleton CSS).</strong></p>
 
-Github Deployment Page: https://abbotkinneydude.github.io/hw6-new-france-api-weather-dashboard/
+<p>Github Repository Page: https://github.com/abbotkinneydude/hw6-new-france-api-weather-dashboard</p>
 
-**Reminder: please insert the API key sent to you via Slack before reviewing. Otherwise the application will not function.**
+<p>Github Deployment Page: https://abbotkinneydude.github.io/hw6-new-france-api-weather-dashboard/</p>
 
-
-<u>Overview:</u>
-
-• Weather Dashboard based on city name search with input field.
-• Displays current weather conditions based on search query.
-• Also displayed is the weather forecast for the next 5 days based on the same search query.
-• Each search query is added to the search history and is retrievable with a simple button click.
-• At page refresh, the dashboard will display the weather from the last search query (prior to refresh).
+<p><strong>Reminder: please insert the API key sent to you via Slack before reviewing. Otherwise the application will not function.</strong></p>
 
 
-<u>Details:</u>
+##<u>Overview:</u>
+
+<ul>
+<li>Weather Dashboard based on city name search with input field.</li>
+<li>Displays current weather conditions based on search query.</li>
+<li>Also displayed is the weather forecast for the next 5 days based on the same search query.</li>
+<li>Each search query is added to the search history and is retrievable with a simple button click.</li>
+<li>At page refresh, the dashboard will display the weather from the last search query (prior to refresh).</li>
+</ul>
+
+##<u>Details:</u>
 
 <i>Weather Conditions for main window are:</i><br />
-<ul>
+<ol>
 <li>City Name</li>
 <li>Date</li>
 <li>Icon Representation of Weather Conditions</li>
 <li>Temperature (Celsius / Fahrenheit)</li>
 <li>Humidity</li>
 <li>Wind speed</li>
-<li>UV index -> a differenc color is associated to each level of the UV index (from moderate to severe).</li>
-</ul>
+<li>UV index (color based condition dependent)</li>
+</ol>
 
 <i>Weather Conditions for 5 days forecast are:</i><br />
-<ul>
+<ol>
 <li>Date</li>
 <li>Icon Representation of Weather Conditions</li>
 <li>Temperature (Celsius / Fahrenheit)</li>
 <li>Humidity</li>
+</ol>
+
+
+##<u>Instructions:</u>
+<ul>
+<li>Enter valid city name in the search box to search for the weather for said city.</li>
+<li>Displayed on screen will be be the current weather and weather forecast for the next 5 days for said city.</li>
+<li>On the left side of the weather condition are displayed yellow active buttons which contain the search history.</li>
+<li>Click on any of those yellow buttons to retrieve the weather condition for the city name associated to that button.</li>
+<li>At page refresh, the current weather conditions will display the last city searched prior to refresh.</li>
+<li>If you want the search history to show after a page refresh, please uncomment function searchHistory().</li>
 </ul>
 
-
-<u>Instructions:</u>
-
-- Enter valid city name in the search box to search for the weather for said city.
-
-- Displayed on screen will be be the current weather and weather forecast for the next 5 days for said city.
-
-- On the left side of the weather condition are displayed yellow active buttons which contain the search history.
-
-- Click on any of those yellow buttons to retrieve the weather condition for the city name associated to that button.
-
-- At page refresh, the current weather conditions will display the last city searched prior to refresh.
-
-- If you want the search history to show after a page refresh, please uncomment function searchHistory().
-
-
-*Refer to weather.js (javascript file) for code dissection.*
+<p><i>Refer to weather.js (javascript file) for code dissection.<i></p>
 
 ## Reference
 
