@@ -9,7 +9,7 @@
 <p><strong>Reminder: please insert the API key sent to you via Slack before reviewing. Otherwise the application will not function.</strong></p>
 
 
-##<u>Overview:</u>
+## Overview:
 
 <ul>
 <li>Weather Dashboard based on city name search with input field.</li>
@@ -19,7 +19,7 @@
 <li>At page refresh, the dashboard will display the weather from the last search query (prior to refresh).</li>
 </ul>
 
-##<u>Details:</u>
+## Details:
 
 <i>Weather Conditions for main window are:</i><br />
 <ol>
@@ -41,7 +41,7 @@
 </ol>
 
 
-##<u>Instructions:</u>
+## Instructions:
 <ul>
 <li>Enter valid city name in the search box to search for the weather for said city.</li>
 <li>Displayed on screen will be be the current weather and weather forecast for the next 5 days for said city.</li>
