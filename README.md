@@ -65,6 +65,7 @@
 <li>Standard Javascript for logic [https://en.wikipedia.org/wiki/JavaScript]</li>
 <li>Jquery Library [https://jquery.com/] *Used mostly for the AJAX Calls*</li>
 <li>Local Storage to store search history.</li>
+</ul>
 
  ## The MIT License (MIT)
 
