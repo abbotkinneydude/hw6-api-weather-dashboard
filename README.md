@@ -2,11 +2,13 @@
 
 <p><strong>New France Weather Dashboard optimized for mobile devices (Skeleton CSS).</strong></p>
 
-<p>Github Repository Page: https://github.com/abbotkinneydude/hw6-new-france-api-weather-dashboard</p>
+<p>Github Repository Page: https://github.com/palowenstein/hw6-new-france-api-weather-dashboard</p>
 
-<p>Github Deployment Page: https://abbotkinneydude.github.io/hw6-new-france-api-weather-dashboard/</p>
+<p>Github Deployment Page: https://palowenstein.github.io/hw6-new-france-api-weather-dashboard/</p>
 
 <p><strong>Reminder: please insert the API key sent to you via Slack before reviewing. Otherwise the application will not function.</strong></p>
+
+![New France Weather Dashboard (Screenshot)](./assets/img/ucla-hw6-new-france-weather-dashboard.jpg?raw=true "New France Weather Dashboard (Screenshot)")
 
 
 ## Overview:
@@ -53,7 +55,7 @@
 
 <p><i>Refer to weather.js (javascript file) for code dissection.<i></p>
 
-## Reference
+## References
 
 Skeleton CSS Library [http://getskeleton.com/] *Lightweight alternative to Bootstrap*
 
