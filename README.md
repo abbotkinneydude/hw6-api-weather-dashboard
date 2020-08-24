@@ -1,17 +1,13 @@
 ## #hw6-api-new-france-weather-dashboard
 
 <h3>New France Weather Dashboard optimized for mobile devices (Skeleton CSS).</h3>
-
 <p>Github Repository Page: https://github.com/palowenstein/hw6-new-france-api-weather-dashboard</p>
-
 <p>Github Deployment Page: https://palowenstein.github.io/hw6-new-france-api-weather-dashboard/</p>
-
 <p><strong>Reminder: please insert the API key sent to you via Slack before reviewing. Otherwise the application will not function.</strong></p>
 
 ![New France Weather Dashboard (Screenshot)](./assets/img/ucla-hw6-new-france-weather-dashboard.jpg?raw=true "New France Weather Dashboard (Screenshot)")
 
 ## Overview:
-
 <ul>
 <li>Weather Dashboard based on city name search with input field.</li>
 <li>Displays current weather conditions based on search query.</li>
@@ -21,7 +17,6 @@
 </ul>
 
 ## Details:
-
 <i>Weather Conditions for main window are:</i><br />
 <ol>
 <li>City Name</li>
@@ -54,8 +49,7 @@
 
 <p><i>Refer to weather.js (javascript file) for code dissection.<i></p>
 
-## References
-
+## References:
 <ul>
 <li>Skeleton CSS Library [http://getskeleton.com/] *Lightweight alternative to Bootstrap*</li>
 <li>Moment.js Library [https://momentjs.com/] *Used to retrieve date & time for header*</li>
@@ -67,4 +61,6 @@
 
  ## License
 
-<p><a href="./MITlicense.txt">MIT License</a> | Copyright © [2020] Pierre André Lowenstein</p>
+<ul style="list-style-type: none;">
+<li><a href="./MITlicense.txt">MIT License</a> | Copyright © [2020] Pierre André Lowenstein</li>
+</ul>
