@@ -47,7 +47,7 @@
 <li>If you want the search history to show after a page refresh, please uncomment function searchHistory().</li>
 </ul>
 
-<p><i>Refer to weather.js (javascript file) for code dissection.<i></p>
+<p><i>Refer to weather.js (javascript file) for code dissection.</i></p>
 
 ## References:
 <ul>
