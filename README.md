@@ -60,8 +60,6 @@
 </ul>
 
  ## License
-<ul style="list-style-type: none;">
-<li>
+<p>
 <a href="./MITlicense.txt">MIT License</a> | Copyright © [2020] Pierre André Lowenstein
-</li>
-</ul>
+</p>
