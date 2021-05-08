@@ -50,7 +50,7 @@ $(document).ready(function(){ // ensures that no JS executes until full html/css
     //     }
     // };
 
-    var apiKey = ""; // Global API Key for Open Weather Map API
+    var apiKey = ""; // INSERT Global API Key for Open Weather Map API
   
     // Main Retrieval Function
     function getWeather (city) {
