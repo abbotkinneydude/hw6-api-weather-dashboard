@@ -1,11 +1,11 @@
-## #hw6-api-new-france-weather-dashboard
+## #6-api-new-france-weather-dashboard
 
 <h3>New France Weather Dashboard optimized for mobile devices (Skeleton CSS).</h3>
 <p>Github Repository Page: https://github.com/palowenstein/new-france-api-weather-dashboard</p>
 <p>Github Deployment Page: https://palowenstein.github.io/new-france-api-weather-dashboard/</p>
 <p><strong>Reminder: please insert the API key sent to you via Slack before reviewing. Otherwise the application will not function.</strong></p>
 
-![New France Weather Dashboard (Screenshot)](./assets/img/ucla-hw6-new-france-weather-dashboard.jpg?raw=true "New France Weather Dashboard (Screenshot)")
+![New France Weather Dashboard (Screenshot)](./assets/img/6-new-france-weather-dashboard.jpg?raw=true "New France Weather Dashboard (Screenshot)")
 
 ## Overview:
 <ul>
@@ -66,7 +66,7 @@
 
  ## Contact
 <p>
-<a href="http://pierreandrelowenstein.com" title="[www] Pierre Andr&eacute; Lowenstein" target="_blank">[www] pierreandrelowenstein.com</a>
+<a href="https://pierreandrelowenstein.com" title="[www] Pierre Andr&eacute; Lowenstein" target="_blank">[www] pierreandrelowenstein.com</a>
 &nbsp;|&nbsp;
-<a href="mailto:soundtrackspecialist@gmail.com" title="Courriel">Send me a 'courriel'</a>
+<a href="coder@pierreandrelowenstein.com" title="Courriel">Send me a 'courriel'</a>
 </p>
